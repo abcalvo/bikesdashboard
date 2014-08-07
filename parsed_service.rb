@@ -1,0 +1,2 @@
+class ParsedService
+end

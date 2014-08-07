@@ -1,0 +1,13 @@
+<% @services.each do |service| %>
+<div class="service">
+	<h4>
+		<a href="<%= service.url %>"><%= service.name %></a> 
+		<br/>Web Service Status: <%= service.valid_service ? "<span class='ok'>Ok</span>" : "<span class='nok'>Nok</span>" %>
+		<% if not service.valid_service %>
+			Code: <%= service.res_code %> Message: <%= service.res_msg %>
+		<% end %>
+		<br/>Parkings name and order: <%= service.parsed_data.parking_names_validated ? "<span class='ok'>Ok</span>" : "<span class='nok'>Nok</span>" %>
+		<br/>Number of parkings: <%= service.parsed_data.number_of_parkings_validated ? "<span class='ok'>Ok</span>" : "<span class='nok'>Nok</span>" %>
+	</h4>
+</div>
+<% end %>

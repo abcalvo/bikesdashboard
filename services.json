@@ -1,0 +1,6 @@
+{
+	"services":[
+	    {"name":"enBici Leganés", "url":"http://www.movilidadciclistaleganes.org/estado/EstadoActual.asp","parser":"EnBiciParser"},
+	    {"name":"GBici Getafe", "url":"http://sicp.gbici.es/SICP_Monitorizacion_PantallaCompleta.aspx","parser":"GBiciParser"}
+	]
+}
