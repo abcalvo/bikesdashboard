@@ -10,13 +10,11 @@ class GBiciParser < Parser
 	end
 
 	def parse(body)
-		document = Nokogiri::HTML(body)
 		@parking_names = Array.new
+		data = JSON.parse(body)["data"]
 
-		data = document.css('#PnlTablas table')
-		
 		data.each do |parking|
-			parking_name = parking.xpath('./tr[1]/td[1]/table[1]/tr[1]/td[2]/font/b').text
+			parking_name = parking["descripcion"]
 			parking_names << parking_name unless parking_name.empty?
 		end
 	end
@@ -24,20 +22,20 @@ class GBiciParser < Parser
 	#create_array_valid_parking_names creates an array with part of valid parking names, to test the correct order.
 	def create_array_valid_parking_names
 		valid_parking_names = [
-			'ARROYO CULEBRO',
-			'C C BUENAVISTA',
-			'ALHÓNDIGA',
-			'ESTACIÓN GETAFE CENTRAL',
-			'PLAZA CARRETAS',
-			'PLAZA DE ESPAÑA',
-			'C\MADRID',
-			'C C JUAN',
-			'RESID.',
-			'FUENTE',
-			'TRECE',
-			'AVIOCAR',
-			'POLIDEP',
-			'MAGDALENA'
+			'01 MANUEL AZAÑA',
+			'02 C C BUENAVISTA',
+			'03 ALHÓNDIGA CENTRO CIVICO',
+			'04 ESTACIÓN GETAFE CENTRAL',
+			'05 PLAZA CARRETAS',
+			'06 PLAZA DE ESPAÑA',
+			'07 C\MADRID - DE LA CIERVA',
+			'08 C C JUAN DE LA CIERVA',
+			'09 RESID. DE ESTUDIANTES',
+			'10 FUENTE DE GOYA',
+			'11 TRECE ROSAS',
+			'12 PARQUE AVIOCAR',
+			'13 POLIDEP. ALHÓNDIGA',
+			'14 PL. DE LA MAGDALENA'
 		]
 
 		return valid_parking_names

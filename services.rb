@@ -10,7 +10,7 @@ class Services
 	attr_accessor :services
 
 	def initialize
-		loadServices		
+		loadServices
 	end
 
 	def loadServices
@@ -23,5 +23,3 @@ class Services
 
 	private :loadServices
 end
-
-#services = Services.new

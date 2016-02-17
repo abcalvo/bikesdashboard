@@ -6,25 +6,37 @@ class Service
 		@url = url
 		@parser = parser
 
-		getStatus
+		if (getStatus == 0) then
+			parseService
 
-		parseService
+			puts @parsed_data.valid
+			puts @parsed_data.parking_names
+		else
+			puts "Error obteniendo status del servicio " + @name
 
-		puts @parsed_data.valid
-		puts @parsed_data.parking_names
+			@res_code = -1
+			@res_msg = "Error obteniendo status del servicio " + @name
+		end
 	end
 
 	def getStatus
 		uri = URI.parse(@url.to_s)
 		req = Net::HTTP::Get.new(uri.to_s)
-		res = Net::HTTP.start(uri.host, uri.port) {|http|
-			http.request(req)
-		}
 
-		@res_code = res.code.to_i
-		@valid_service = (@res_code == 200)
-		@res_msg = res.message
-		@body = res.body
+		begin
+			res = Net::HTTP.start(uri.host, uri.port) {|http|
+				http.request(req)
+			}
+
+			@res_code = res.code.to_i
+			@valid_service = (@res_code == 200)
+			@res_msg = res.message
+			@body = res.body
+		rescue
+			return 1
+		end
+
+		return 0
 	end
 
 	def parseService

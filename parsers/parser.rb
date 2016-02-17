@@ -9,7 +9,9 @@ class Parser
 	end
 
 	def validate
-		@valid = ((validate_parking_names) and (validate_number_of_parkings))
+		are_parking_names_valid = validate_parking_names
+		are_number_of_parkings_valid = validate_number_of_parkings
+		@valid = ((are_parking_names_valid) and (are_number_of_parkings_valid))
 	end
 
 	def validate_parking_names
